@@ -1,0 +1,95 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar styles */
+nav {
+  display: flex;
+  align-items: center;
+  background-color: #fbfbfb;
+  box-shadow:  0 3px 6px 0 rgba(0,0,0,0.11);
+  padding: 1rem;
+  margin-bottom: 3rem;
+
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding-right: 4rem;
+  justify-content: end;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+}
+
+nav ul li:hover {
+  border-top: solid 2px dodgerblue;
+}
+
+
+nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: black;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.nav-totalitems {
+  font-weight: bold;
+  color:  dodgerblue;
+}
+
+.active  {
+  font-weight: bolder;
+  color: dodgerblue;
+  border: 1px dodgerblue;
+}
+
+.Icons {
+  stroke: currentColor;
+}
+
+.logo {
+  width: 60px; /* Adjust size */
+  height: auto;
+}
+
+nav ul li a:hover {
+  color: deepskyblue;
+}
+
+/* Page styles */
+h1 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.Carts-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.wishlist-cart h1 {
+  padding-bottom: 3rem;
+}
+
+.wishlist-cart  p{
+  font-size: 24px;
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+{
+  "include": ["src/**/*", "src/vite-env.d.ts"],
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": "./src", // Add this to simplify imports
+    "paths": {
+      "@/*": ["./*"] // Optional: Use aliases for imports
+    }
+  }
+}

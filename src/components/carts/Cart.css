@@ -1,0 +1,54 @@
+
+.CartComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 4px;
+  box-shadow:  0 3px 6px 0 rgba(0,0,0,0.11);
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+.CartComponent:hover {
+  box-shadow: 0 2px 11px 0 rgba(0,0,0,0.24);
+}
+
+.title-favorite-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+h3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: start;
+}
+
+.quantitySection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+}
+.quantitySection button {
+  max-width: fit-content;
+  padding: 10px 24px 10px 24px;
+  background-color: white;
+  border: none;
+  box-shadow:  0 2px 4px 0 rgba(0,0,0,0.16);
+}
+
+.quantitySection input {
+  text-align: center;
+  padding: 10px 24px 10px 24px;
+  width: 50%;
+  border: none;
+}
+
+.quantitySection div {
+  padding-left: 1rem;
+}
