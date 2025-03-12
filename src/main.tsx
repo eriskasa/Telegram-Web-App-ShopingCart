@@ -16,8 +16,11 @@ document.body.style.color = themeParams.text_color || '#000000';
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   document.body.innerHTML = "<p>Faild to find the 'root' element. </p>"
-} else { 
+} else {
+  
+  
   ReactDom.createRoot(rootElement).render(
+  
     <React.StrictMode>
     <WishlistProvider>
     <CartProvider>

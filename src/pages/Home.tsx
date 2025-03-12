@@ -15,18 +15,9 @@ interface HomeCartProduct {
 const Home: React.FC = () => {
   const [ products, setProducts ] = useState<HomeCartProduct[]>([]);
   const [ error, setError ]  = useState<string | null>(null); 
-
-  useEffect(() => {
-    if (window.Telegram && window.Telegram.WebApp ) {
-      const tg = window.Telegram.WebApp;
-      tg.ready();
-      tg.expand();
-    }
-   },[]);
-  
-   const user = window.Telegram.WebApp.initDataUnsafe.user;
    
-
+  const tg = window.Telegram?.WebApp;
+  const user = tg?.initDataUnsafe?.user || {first_name: "Guest"}
     useEffect(() => {
       const fetchProducts = async () => {
         try {
@@ -52,7 +43,7 @@ const Home: React.FC = () => {
     return (
       <div>
 
-      <h1>Hello User, {user?.first_name && user?.last_name || "User"}!</h1>  
+      <h1>Hello User, {user?.first_name}!</h1>  
       <div className="Carts-div">
        {memoizedProducts.length === 0 ? (<p>Loading...</p>) : ( memoizedProducts.map((product) => (
          <ProductCart products={product} key={product.id}/>

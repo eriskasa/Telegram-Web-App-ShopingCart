@@ -6,26 +6,34 @@
 }
 
 /* Navbar styles */
-nav {
+.navbar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #fbfbfb;
-  box-shadow:  0 3px 6px 0 rgba(0,0,0,0.11);
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.11);
   padding: 1rem;
   margin-bottom: 3rem;
-
 }
 
-nav ul {
+/* Logo */
+.logo {
+  width: 60px; /* Adjust size */
+  height: auto;
+  cursor: pointer; /* Make it clickable */
+}
+
+/* Navigation Links */
+.nav-links {
   width: 100%;
   list-style: none;
   display: flex;
   gap: 2rem;
   padding-right: 4rem;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
-nav ul li {
+.nav-links li {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,12 +41,7 @@ nav ul li {
   padding: 16px;
 }
 
-nav ul li:hover {
-  border-top: solid 2px dodgerblue;
-}
-
-
-nav ul li a {
+.nav-links li button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,61 +50,29 @@ nav ul li a {
   text-decoration: none;
   font-size: 1.4rem;
   font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Remove default button padding */
 }
 
-.nav-totalitems {
-  font-weight: bold;
-  color:  dodgerblue;
-}
-
-.active  {
-  font-weight: bolder;
-  color: dodgerblue;
-  border: 1px dodgerblue;
-}
-
-.Icons {
-  stroke: currentColor;
-}
-
-.logo {
-  width: 60px; /* Adjust size */
-  height: auto;
-}
-
-nav ul li a:hover {
+.nav-links li button:hover {
   color: deepskyblue;
 }
 
-/* Page styles */
-h1 {
-  margin-top: 2rem;
-  text-align: center;
+.nav-links li:hover {
+  border-top: solid 2px dodgerblue;
 }
 
-.Carts-div {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 3rem;
+/* Cart item count */
+.nav-totalitems {
+  font-weight: bold;
+  color: dodgerblue;
 }
 
-.wishlist-cart h1 {
-  padding-bottom: 3rem;
-}
-
-.wishlist-cart  p{
-  font-size: 24px;
-  text-align: center;
-}
-
-/* Navbar Styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Icons */
+.Icons {
+  stroke: currentColor;
 }
 
 /* Hamburger Button (Visible only on mobile) */
@@ -109,28 +80,18 @@ h1 {
   display: none; /* Hide by default */
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
+  padding: 0.5rem;
 }
 
-/* Navigation Links */
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 1rem;
-}
-
-.nav-links li {
-  display: flex;
-  align-items: center;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+/* Hamburger Icon (Three horizontal lines) */
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 4px 0;
+  transition: transform 0.3s ease;
 }
 
 /* Mobile Styles */
@@ -143,15 +104,24 @@ h1 {
     display: none; /* Hide nav links by default on mobile */
     flex-direction: column;
     position: absolute;
-    top: 60px; /* Adjust based on your navbar height */
+    top: 80px; /* Adjust based on your navbar height */
     right: 1rem;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     border-radius: 4px;
+    z-index: 1000; /* Ensure it appears above other content */
   }
 
   .nav-links.active {
     display: flex; /* Show nav links when menu is open */
+  }
+
+  .nav-links li {
+    padding: 12px; /* Adjust padding for mobile */
+  }
+
+  .nav-links li button {
+    font-size: 1.2rem; /* Adjust font size for mobile */
   }
 }

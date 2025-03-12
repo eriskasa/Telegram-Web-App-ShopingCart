@@ -1,6 +1,4 @@
 import { useState } from "react"; // Add this import
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import Logo from './logo.svg';
 import HomeIcon from '../assets/navbarimages/home.svg?react';
 import CartIcon from '../assets/navbarimages/cart.svg?react';
@@ -8,21 +6,25 @@ import WishlistIcon from '../assets/navbarimages/wishlist.svg?react';
 import { useContext } from "react";
 import { CartContext } from "./carts/CartContext";
 
-const Navbar = () => {
+interface NavbarProps {
+  setCurrentPage: (page: 'home' | 'shop' | 'wishlist') => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({setCurrentPage}) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
   const context = useContext(CartContext);
 
   if (!context) {
     throw new Error("Navbar must be used within a CartProvider");
   }
-
   const { totalItems } = context;
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+
 
   return (
     <nav className="navbar">
-      <Link to='/'>
+      <div onClick={() => setCurrentPage('home')}>
         <img src={Logo} alt="logo" className="logo" />
-      </Link>
+      </div>
 
       {/* Hamburger Button */}
       <button className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -31,24 +33,24 @@ const Navbar = () => {
 
       {/* Navigation Menu */}
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-        <li>
-          <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
+        <li onClick={() => setIsMenuOpen(false)}>
+          <div  onClick={() => setCurrentPage('home')}>
             <HomeIcon className='Icons' width='24px' height='24px' />
             Home
-          </NavLink>
+          </div>
         </li>
-        <li>
-          <NavLink to="shop" onClick={() => setIsMenuOpen(false)}>
+        <li onClick={() => setIsMenuOpen(false)}>
+          <div onClick={() => setCurrentPage('shop')}>
             <CartIcon className='Icons' width='24px' height='24px' />
             {totalItems > 0 && <span className="nav-totalitems">({totalItems})</span>}
             Shop Cart
-          </NavLink>
+          </div>
         </li>
-        <li>
-          <NavLink to="wishlist" onClick={() => setIsMenuOpen(false)}>
+        <li onClick={() => setIsMenuOpen(false)}>
+          <div onClick={() => setCurrentPage('wishlist')}>
             <WishlistIcon className='Icons' width='24px' height='24px' />
             Wishlist
-          </NavLink>
+          </div>
         </li>
       </ul>
     </nav>

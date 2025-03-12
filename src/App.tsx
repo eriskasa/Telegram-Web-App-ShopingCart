@@ -1,30 +1,33 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Wishlist from './pages/Wishlist';
 import ShopItems from './pages/Shop';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 
 const App: React.FC = () => {
+  const tg = window.Telegram?.WebApp;
+  const user = tg?.initDataUnsafe?.user || { first_name: 'Guest' };
+  const [ currentPage, setCurrentPage ] = useState<'home' | 'shop' | 'wishlist'>('home');
+
   useEffect(() => {
-    if (window.Telegram && window.Telegram.WebApp ) {
-      const tg = window.Telegram.WebApp;
-      tg.ready();
-      tg.expand();
-    }
-   },[]);
+      if (tg) {
+        tg.ready();
+        tg.expand();
+      }
+   },[tg]);
+
 
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/shop' element={<ShopItems/>} />
-        <Route path='/wishlist' element={<Wishlist/>}/>
-      </Routes>
-    </Router>
-    )
-}
+    <div>
+      <Navbar setCurrentPage={setCurrentPage}/> 
+      {currentPage  === 'home' && <Home/>}
+      {currentPage === 'shop' && <ShopItems/>}
+      {currentPage === 'wishlist' && <Wishlist/>}
+    </div>
+    );
+};
 
 export default App
