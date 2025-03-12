@@ -67,6 +67,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     };
  
     const Checkout = () => {
+      const tg = window.Telegram.WebApp;
+      const cartData = {cart}
+      tg.sendData(JSON.stringify(cartData));
       setCart([]);
     }
     // Calculate the total number of items in the cart

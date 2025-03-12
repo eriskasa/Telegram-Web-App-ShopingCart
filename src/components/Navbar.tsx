@@ -6,7 +6,6 @@ import WishlistIcon from '../assets/navbarimages/wishlist.svg?react';
 import { useContext } from "react";
 import { CartContext } from "./carts/CartContext";
 
-
 interface NavbarProps {
   setCurrentPage: (page: 'home' | 'shop' | 'wishlist') => void;
 }
