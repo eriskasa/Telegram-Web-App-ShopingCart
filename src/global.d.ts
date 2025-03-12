@@ -6,6 +6,7 @@ declare global {
       WebApp: {
         ready: () => void;
         expand: () => void;
+        sendData: (data: string) => void;
         initDataUnsafe: {
           user?: {
             id: number;
