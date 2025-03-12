@@ -6,6 +6,7 @@ import WishlistIcon from '../assets/navbarimages/wishlist.svg?react';
 import { useContext } from "react";
 import { CartContext } from "./carts/CartContext";
 
+
 interface NavbarProps {
   setCurrentPage: (page: 'home' | 'shop' | 'wishlist') => void;
 }
@@ -34,23 +35,23 @@ const Navbar: React.FC<NavbarProps> = ({setCurrentPage}) => {
       {/* Navigation Menu */}
       <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
         <li onClick={() => setIsMenuOpen(false)}>
-          <div  onClick={() => setCurrentPage('home')}>
+          <button  onClick={() => setCurrentPage('home')} className="hamburgerbutton">
             <HomeIcon className='Icons' width='24px' height='24px' />
             Home
-          </div>
+          </button>
         </li>
         <li onClick={() => setIsMenuOpen(false)}>
-          <div onClick={() => setCurrentPage('shop')}>
+          <button onClick={() => setCurrentPage('shop')} className="hamburgerbutton">
             <CartIcon className='Icons' width='24px' height='24px' />
             {totalItems > 0 && <span className="nav-totalitems">({totalItems})</span>}
             Shop Cart
-          </div>
+          </button>
         </li>
         <li onClick={() => setIsMenuOpen(false)}>
-          <div onClick={() => setCurrentPage('wishlist')}>
+          <button onClick={() => setCurrentPage('wishlist')} className="hamburgerbutton">
             <WishlistIcon className='Icons' width='24px' height='24px' />
             Wishlist
-          </div>
+          </button>
         </li>
       </ul>
     </nav>

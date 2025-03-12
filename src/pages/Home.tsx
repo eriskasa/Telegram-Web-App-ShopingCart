@@ -16,8 +16,7 @@ const Home: React.FC = () => {
   const [ products, setProducts ] = useState<HomeCartProduct[]>([]);
   const [ error, setError ]  = useState<string | null>(null); 
    
-  const tg = window.Telegram?.WebApp;
-  const user = tg?.initDataUnsafe?.user || {first_name: "Guest"}
+
     useEffect(() => {
       const fetchProducts = async () => {
         try {
@@ -42,8 +41,6 @@ const Home: React.FC = () => {
     console.log('ProductCart re-rendered with products:', products);
     return (
       <div>
-
-      <h1>Hello User, {user?.first_name}!</h1>  
       <div className="Carts-div">
        {memoizedProducts.length === 0 ? (<p>Loading...</p>) : ( memoizedProducts.map((product) => (
          <ProductCart products={product} key={product.id}/>
