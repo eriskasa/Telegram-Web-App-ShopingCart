@@ -50,12 +50,15 @@ const Home: React.FC = () => {
 
     console.log('ProductCart re-rendered with products:', products);
     return (
-      <div className="Carts-div">
+      <div>
+
       <h1>Hello User, {user?.first_name && user?.last_name || "User"}!</h1>  
+      <div className="Carts-div">
        {memoizedProducts.length === 0 ? (<p>Loading...</p>) : ( memoizedProducts.map((product) => (
-        <ProductCart products={product} key={product.id}/>
-       ))
+         <ProductCart products={product} key={product.id}/>
+        ))
       )}
+      </div>
     </div>
   );
 };
