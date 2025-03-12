@@ -1,4 +1,15 @@
+:root {
+  --bg-color: #ffffff; /* Default background color */
+  --text-color: #000000; /* Default text color */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 /* Basic reset */
+
+
 * {
   margin: 0;
   padding: 0;
