@@ -4,8 +4,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Wishlist from './pages/Wishlist';
 import ShopItems from './pages/Shop';
+import { useEffect } from 'react';
 
-function App() {
+const App: React.FC = () => {
 
   return (
     <Router>

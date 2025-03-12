@@ -1,10 +1,15 @@
 
+.Carts-div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1fr));
+}
+
 .CartComponent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
-  width: fit-content;
+  justify-content: center;
+  width: 80%;
   height: fit-content;
   border-radius: 4px;
   box-shadow:  0 3px 6px 0 rgba(0,0,0,0.11);
@@ -51,4 +56,26 @@ h3 {
 
 .quantitySection div {
   padding-left: 1rem;
+}
+
+@media (max-width: 800px) {
+  .Carts-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .CartComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    height: fit-content;
+    border-radius: 4px;
+    box-shadow:  0 3px 6px 0 rgba(0,0,0,0.11);
+    padding: 2rem 2rem 2rem 2rem;
+  }
+
 }

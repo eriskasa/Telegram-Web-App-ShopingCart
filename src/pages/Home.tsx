@@ -12,10 +12,20 @@ interface HomeCartProduct {
   image: string,
 }
 
+const Home: React.FC = () => {
+  const [ products, setProducts ] = useState<HomeCartProduct[]>([]);
+  const [ error, setError ]  = useState<string | null>(null); 
 
-const Home = () => {
-    const [ products, setProducts ] = useState<HomeCartProduct[]>([]);
-    const [ error, setError ]  = useState<string | null>(null);
+  useEffect(() => {
+    if (window.Telegram && window.Telegram.WebApp ) {
+      const tg = window.Telegram.WebApp;
+      tg.ready();
+      tg.expand();
+    }
+   },[]);
+  
+   const user = window.Telegram.WebApp.initDataUnsafe.user;
+   
 
     useEffect(() => {
       const fetchProducts = async () => {
@@ -41,6 +51,7 @@ const Home = () => {
     console.log('ProductCart re-rendered with products:', products);
     return (
       <div className="Carts-div">
+      <h1>Hello User, {user?.first_name && user?.last_name || "User"}!</h1>  
        {memoizedProducts.length === 0 ? (<p>Loading...</p>) : ( memoizedProducts.map((product) => (
         <ProductCart products={product} key={product.id}/>
        ))
