@@ -1,5 +1,6 @@
-import { useMemo, useEffect, useState, ReactNode } from "react";
-import ProductCart from "../components/carts/Cart";
+import React,{ useMemo, useEffect, useState, ReactNode, Suspense } from "react";
+import LoadingSpiner from "@/components/loadingComponent/LoadingSpinner";
+const ProductCart = React.lazy(() => import("../components/carts/Cart"))
 
 interface HomeCartProduct {
   id: number,
@@ -42,7 +43,7 @@ const Home: React.FC = () => {
     return (
       <div>
       <div className="Carts-div">
-       {memoizedProducts.length === 0 ? (<p>Loading...</p>) : ( memoizedProducts.map((product) => (
+       {memoizedProducts.length === 0 ? (<LoadingSpiner/>) : ( memoizedProducts.map((product) => (
          <ProductCart products={product} key={product.id}/>
         ))
       )}

@@ -1,32 +1,21 @@
 :root {
-  --bg-color: #ffffff; /* Default background color */
-  --text-color: #000000; /* Default text color */
+  --bg-color: #eff7f6f4; 
+  --text-color: #141414;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
 }
-/* Basic reset */
-
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* Navbar styles */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fbfbfb;
-  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.11);
-  padding: 1rem;
-  margin-bottom: 3rem;
-  position: relative;
-  z-index: 1000;
 }
 
 .logo {
@@ -35,160 +24,11 @@ body {
   cursor: pointer;
 }
 
-/* Navigation Links */
-.nav-links {
-  width: 100%;
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  padding-right: 4rem;
-  justify-content: flex-end;
-}
-
-.nav-links li {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 16px 8px;
-  transition: all 0.3s ease;
-}
-
-.nav-links li:hover {
-  border-top: solid 2px dodgerblue;
-}
-
-.hamburgerbutton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: none;
-  border: none;
-  color: black;
-  text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.hamburgerbutton:hover {
-  color: deepskyblue;
-}
-
 .Icons {
   stroke: currentColor;
 }
 
-.nav-totalitems {
-  font-weight: bold;
-  color: dodgerblue;
-  margin-left: 4px;
-}
-
-/* Hamburger Button (Hidden on desktop) */
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #333;
-  transition: color 0.3s ease;
-  z-index: 1001;
-}
-
-.hamburger:hover {
-  color: dodgerblue;
-}
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-  
-  .hamburger {
-    display: block; /* Show hamburger on mobile */
-  }
-  
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 75%;
-    height: 100vh;
-    flex-direction: column;
-    background-color: #fbfbfb;
-    box-shadow: -3px 0 10px rgba(0,0,0,0.15);
-    padding: 6rem 1.5rem 2rem;
-    transition: right 0.3s ease-in-out;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-    z-index: 999;
-  }
-  
-  .nav-links.active {
-    right: 0;
-  }
-  
-  .nav-links li {
-    width: 100%;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .nav-links li:hover {
-    border-top: none;
-    background-color: rgba(30, 144, 255, 0.1);
-  }
-  
-  .hamburgerbutton {
-    width: 100%;
-    justify-content: flex-start;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-  }
-  
-  /* Add overlay when menu is open */
-  .nav-links.active::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 25%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-  }
-  
-  /* Close button for mobile menu */
-  .nav-links.active::after {
-    content: "×";
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #333;
-  }
-}
-
-/* Animation for hamburger menu */
-@keyframes slideIn {
-  from { right: -100%; }
-  to { right: 0; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.nav-links.active {
-  animation: slideIn 0.3s forwards;
-}
-
-.nav-links.active::before {
-  animation: fadeIn 0.3s forwards;
+.wishlist-cart {
+  justify-items: center;
+  padding-top: 2rem;
 }

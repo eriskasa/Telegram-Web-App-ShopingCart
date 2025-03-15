@@ -1,10 +1,11 @@
-import { useState } from "react"; // Add this import
+import { useEffect, useState } from "react"; // Add this import
 import Logo from './logo.svg';
 import HomeIcon from '../assets/navbarimages/home.svg?react';
 import CartIcon from '../assets/navbarimages/cart.svg?react';
 import WishlistIcon from '../assets/navbarimages/wishlist.svg?react';
 import { useContext } from "react";
 import { CartContext } from "./carts/CartContext";
+import './Navbar.css'
 
 interface NavbarProps {
   setCurrentPage: (page: 'home' | 'shop' | 'wishlist') => void;
@@ -19,6 +20,21 @@ const Navbar: React.FC<NavbarProps> = ({setCurrentPage}) => {
   }
   const { totalItems } = context;
 
+  const toogleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(()  => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  },[isMenuOpen]);
 
   return (
     <nav className="navbar">
@@ -27,12 +43,12 @@ const Navbar: React.FC<NavbarProps> = ({setCurrentPage}) => {
       </div>
 
       {/* Hamburger Button */}
-      <button className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        ☰
+      <button className="hamburger" onClick={toogleMenu}>
+      {isMenuOpen ? "✕" : "☰"}
       </button>
 
       {/* Navigation Menu */}
-      <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
+      <ul className={`nav-links ${isMenuOpen ? "active" : "close-button"}`}>
         <li onClick={() => setIsMenuOpen(false)}>
           <button  onClick={() => setCurrentPage('home')} className="hamburgerbutton">
             <HomeIcon className='Icons' width='24px' height='24px' />

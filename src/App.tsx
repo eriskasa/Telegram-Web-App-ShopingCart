@@ -1,10 +1,14 @@
-import './App.css';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import { useEffect, useState } from 'react';
+import React from 'react';
+import ShopItems from './pages/Shop';
 import Home from './pages/Home';
 import Wishlist from './pages/Wishlist';
-import ShopItems from './pages/Shop';
-import { useEffect, useState } from 'react';
+
+// const ShopingItems = React.lazy(() => import('./pages/Shop'))
+// const WishList = React.lazy(() => import('./pages/Wishlist')) 
+// const Home = React.lazy(() => import('./pages/Home'))
 
 const App: React.FC = () => {
   const tg = window.Telegram?.WebApp;
@@ -15,17 +19,14 @@ const App: React.FC = () => {
     if (tg) {
       tg.ready(); // Notify Telegram that the app is ready
       tg.expand(); // Expand the app to full screen
-      console.log('Telegram Web App initialized');
-      console.log('initDataUnsafe:', tg.initDataUnsafe); // Log all data
-      console.log('User:', tg.initDataUnsafe.user); // Log user data
     }
   }, [tg]);
 
   return (
     <div>
-      <h1>Hello, {user.first_name}!</h1>
       {!tg && <p>This app is designed for Telegram. Open it in Telegram for the best experience.</p>}
       <Navbar setCurrentPage={setCurrentPage} />
+      <h3 style={{textAlign: 'center'}}>Hello, {user.first_name}!</h3>
       {currentPage === 'home' && <Home />}
       {currentPage === 'shop' && <ShopItems />}
       {currentPage === 'wishlist' && <Wishlist />}

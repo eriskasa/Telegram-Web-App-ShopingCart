@@ -68,12 +68,12 @@ const ProductCart = ({ products }: ProductsCartProps ) => {
 
   return (
     <div className="CartComponent">
-      <img src={products.image} width="250px" height="250x" alt={products.title} />
       <div>
         <div className="title-favorite-div">
-          <h3>{products.title.length > 25 ? products.title.slice(0, 25) + "..." : products.title}</h3>
+          <h3 className="title-text">{products.title.length > 25 ? products.title.slice(0, 25) + "..." : products.title}</h3>
           <FavoriteButton isFavorite={isFavorite} onToggleFavorite={handleFavoriteToogle} />
         </div>
+      <img src={products.image} width="250px" height="250x" loading="lazy" style={{paddingBottom: "1rem", paddingTop: "1rem"}} alt={products.title} />
         <div className="quantitySection">
           <button disabled={quantity === 1} onClick={handleIcremenet}> - </button>
           <input value={quantity} disabled />

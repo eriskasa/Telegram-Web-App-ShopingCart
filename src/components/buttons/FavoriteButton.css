@@ -1,14 +1,13 @@
 
-/* favorite button stylle */
-
 .favorite-button {
-  background: none;
+  background: rgba(243, 243, 243, 0.759);
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
+  border-radius: 32px;
 }
 
 .favorite-button svg {
@@ -18,5 +17,5 @@
 }
 
 .favorite-button:hover svg {
-  fill: #ff6347; /* Tomato color */
+  fill: #ff6347;
 } 
