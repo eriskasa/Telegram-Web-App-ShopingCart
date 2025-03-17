@@ -5,7 +5,9 @@ import { WishlistProvider } from './context/WishlistContext.jsx'
 import { CartProvider } from './components/carts/CartContext.jsx'
 import { Suspense } from 'react'
 import LoadingSpiner from './components/loadingComponent/LoadingSpinner'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+const queryCliet = new QueryClient();
 const App = React.lazy(() => import('./App'))
 
 const rootElement = document.getElementById('root');
@@ -18,11 +20,13 @@ if (!rootElement) {
   
     <React.StrictMode>
       <Suspense fallback={<LoadingSpiner/>}>
+      <QueryClientProvider client={queryCliet}>
     <WishlistProvider>
     <CartProvider>
         <App/>
     </CartProvider>
     </WishlistProvider>
+      </QueryClientProvider>
       </Suspense>
   </React.StrictMode>
 )

@@ -1,52 +1,52 @@
-import React,{ useMemo, useEffect, useState, ReactNode, Suspense } from "react";
-import LoadingSpiner from "@/components/loadingComponent/LoadingSpinner";
-const ProductCart = React.lazy(() => import("../components/carts/Cart"))
+import React, { Suspense } from "react";
+import { useQuery } from '@tanstack/react-query';
+
+const LoadingSpiner = React.lazy(() => import("@/components/loadingComponent/LoadingSpinner"));
+const ProductCart = React.lazy(() => import("../components/carts/Cart"));
 
 interface HomeCartProduct {
-  id: number,
-  name: string,
-  title: string,
-  quantity: number,
-  isFavorite?: boolean,
-  icon?: ReactNode,
-  price: number,
-  image: string,
+  id: number;
+  name: string;
+  title: string;
+  quantity: number;
+  isFavorite?: boolean;
+  icon?: React.ReactNode;
+  price: number;
+  image: string;
 }
 
+const fetchProducts = async () => {
+  const response = await fetch('https://fakestoreapi.com/products');
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  return response.json();
+};
+
 const Home: React.FC = () => {
-  const [ products, setProducts ] = useState<HomeCartProduct[]>([]);
-  const [ error, setError ]  = useState<string | null>(null); 
-   
+  const { data: products, error, isLoading } = useQuery<HomeCartProduct[], Error>({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  });
 
-    useEffect(() => {
-      const fetchProducts = async () => {
-        try {
-          const response = await fetch('https://fakestoreapi.com/products');
-          const data = await response.json();
-           setProducts(data.map((products: any) => ({...products, isFavorite: false})) as HomeCartProduct[]);
-        } catch (error) {
-          console.error("Error fetching products", error);
-          setError("Faild to fetch products. Please try again later!")
-        }
-      }
-      
-      fetchProducts();
-    },[]) 
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
-    if (error) {
-      return <p>{error}</p>
-    }
-
-    const memoizedProducts = useMemo(() => products, [products]);
-
-    console.log('ProductCart re-rendered with products:', products);
-    return (
-      <div>
+  return (
+    <div>
       <div className="Carts-div">
-       {memoizedProducts.length === 0 ? (<LoadingSpiner/>) : ( memoizedProducts.map((product) => (
-         <ProductCart products={product} key={product.id}/>
-        ))
-      )}
+        {isLoading ? (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoadingSpiner />
+          </Suspense>
+        ) : (
+          products?.map((product) => (
+            <Suspense key={product.id} fallback={<div>Loading product...</div>}>
+              <ProductCart products={product} />
+            </Suspense>
+          ))
+        )}
       </div>
     </div>
   );

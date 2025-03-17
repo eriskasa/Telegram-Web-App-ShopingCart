@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { CartContext } from "./carts/CartContext";
 import './Navbar.css'
 
+
 interface NavbarProps {
   setCurrentPage: (page: 'home' | 'shop' | 'wishlist') => void;
 }

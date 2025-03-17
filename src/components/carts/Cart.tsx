@@ -1,4 +1,4 @@
-import  { useContext, useState , ReactNode} from "react";
+import  { useContext, useState , ReactNode, useMemo, useCallback} from "react";
 import './Cart.css';
 import Button from "../buttons/Buttons";
 import CartIcon from '../../assets/navbarimages/cart.svg?react';
@@ -20,7 +20,6 @@ interface ProductsCartProps {
 }
 
 const ProductCart = ({ products }: ProductsCartProps ) => {
-
   const wishlistContext = useContext(WishlistContext);
   const cartContext = useContext(CartContext);
 
@@ -32,48 +31,54 @@ const ProductCart = ({ products }: ProductsCartProps ) => {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = cartContext;
 
-  const isFavorite = wishlist.some((item) => item.id === products.id);
+  const isFavorite = useMemo(() => wishlist.some((item) => item.id === products.id),[wishlist, products.id]
+  ); 
 
-  const handleFavoriteToogle = () => {
-    console.log('Toggling Favorite for:', products.id); // Debug: Log the product ID being toggled
+  const handleFavoriteToogle = useCallback(() => {
     if (isFavorite) {
-      console.log('Removing from Wishlist:', products.id); // Debug: Log removal
-      removeFromWishlist(products.id); // Remove from wishlist if already favorited
+      removeFromWishlist(products.id);
     } else {
-      console.log('Adding to Wishlist:', products); // Debug: Log addition
-      addToWishList(products); // Add to wishlist if not favorited
-    }
-  };
+      addToWishList(products)}
+  },[isFavorite, products, removeFromWishlist, addToWishList]);
 
-  const handleIcremenet = () => {
+  const handleIcremenet = useCallback(() => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     } else {
       setQuantity(0);
     }
-  };
+  },[quantity]);
 
-  const handleDecrement = () => {
+  const handleDecrement = useCallback(() => {
     if (quantity < 9) {
       setQuantity(quantity + 1);
     }
-  };
+  },[quantity]);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     if (quantity > 0) {
       addToCart(products, quantity)
       setQuantity(1);
     }
-  }
+  },[addToCart, quantity, products]);
+
+  const truncadedTitle = useMemo(() => 
+  products.title.length > 25 ? products.title.slice(0, 25) + "..." : products.title,
+  [products.title]);
 
   return (
     <div className="CartComponent">
       <div>
         <div className="title-favorite-div">
-          <h3 className="title-text">{products.title.length > 25 ? products.title.slice(0, 25) + "..." : products.title}</h3>
+          <h3 className="title-text">{truncadedTitle}</h3>
           <FavoriteButton isFavorite={isFavorite} onToggleFavorite={handleFavoriteToogle} />
         </div>
-      <img src={products.image} width="250px" height="250x" loading="lazy" style={{paddingBottom: "1rem", paddingTop: "1rem"}} alt={products.title} />
+      <img src={products.image} 
+      width="250" 
+      height="250" 
+      loading="lazy"
+      style={{paddingBottom: "1rem", paddingTop: "1rem"}} 
+      alt={products.title} />
         <div className="quantitySection">
           <button disabled={quantity === 1} onClick={handleIcremenet}> - </button>
           <input value={quantity} disabled />
