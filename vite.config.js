@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), vitePluginSvgr()],
   server: {
     host: true,
-    port: 5173,
+    port: 80,
   },
   resolve: {
     alias: {
