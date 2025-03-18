@@ -5,6 +5,10 @@ import vitePluginSvgr from 'vite-plugin-svgr';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), vitePluginSvgr()],
+  server: {
+    host: true,
+    port: 5173,
+  },
   resolve: {
     alias: {
       '@': '/src',
